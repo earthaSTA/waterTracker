@@ -11,6 +11,7 @@
 		FC9418E72CC51F4F00442D77 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9418E62CC51F4F00442D77 /* ContentView.swift */; };
 		FC9418E92CC51F5400442D77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9418E82CC51F5400442D77 /* Assets.xcassets */; };
 		FC9418EC2CC51F5400442D77 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9418EB2CC51F5400442D77 /* Preview Assets.xcassets */; };
+		FC9418F32CC5453700442D77 /* onboradingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9418F22CC5453600442D77 /* onboradingScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		FC9418E62CC51F4F00442D77 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FC9418E82CC51F5400442D77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC9418EB2CC51F5400442D77 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FC9418F22CC5453600442D77 /* onboradingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboradingScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				FC9418E42CC51F4F00442D77 /* waterTrackingAppApp.swift */,
+				FC9418F22CC5453600442D77 /* onboradingScreen.swift */,
 				FC9418E62CC51F4F00442D77 /* ContentView.swift */,
 				FC9418E82CC51F5400442D77 /* Assets.xcassets */,
 				FC9418EA2CC51F5400442D77 /* Preview Content */,
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC9418F32CC5453700442D77 /* onboradingScreen.swift in Sources */,
 				FC9418E72CC51F4F00442D77 /* ContentView.swift in Sources */,
 				FC9418E52CC51F4F00442D77 /* waterTrackingAppApp.swift in Sources */,
 			);
