@@ -10,7 +10,7 @@ import SwiftUI
 struct onboradingScreen: View {
     
     @State var weight: String
-    
+    // try
     var body: some View {
         
         VStack {
