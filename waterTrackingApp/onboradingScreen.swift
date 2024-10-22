@@ -11,25 +11,7 @@ struct onboradingScreen: View {
     
     @State var weight: String
     
-    
     var body: some View {
-        
-        
-        
-        //            HStack() {
-        //                VStack(){
-        //                    Image(systemName: "drop.fill")
-        //                        .resizable()
-        //                        .frame(width: 50, height: 75)
-        //                        .foregroundColor(.cyan)
-        //                    Text("Hydrate")
-        //                        .font(.title2)
-        //                        .fontWeight(.semibold)
-        //                        .frame(width: 80, height: 28)
-        //                }
-        //                .padding()
-        //
-        //            }
         
         VStack {
           
