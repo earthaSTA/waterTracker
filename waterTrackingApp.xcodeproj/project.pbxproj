@@ -12,6 +12,10 @@
 		FC9418E92CC51F5400442D77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9418E82CC51F5400442D77 /* Assets.xcassets */; };
 		FC9418EC2CC51F5400442D77 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC9418EB2CC51F5400442D77 /* Preview Assets.xcassets */; };
 		FC9418F32CC5453700442D77 /* onboradingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9418F22CC5453600442D77 /* onboradingScreen.swift */; };
+		FC9418F52CC7CC1900442D77 /* NotificationPreferencesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9418F42CC7CC1900442D77 /* NotificationPreferencesScreen.swift */; };
+		FC9418F72CC934F600442D77 /* IntakeProgressScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9418F62CC934F600442D77 /* IntakeProgressScreen.swift */; };
+		FC9418FA2CCA6EE800442D77 /* WaterTrackerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9418F92CCA6EE800442D77 /* WaterTrackerModel.swift */; };
+		FC9418FC2CCA776500442D77 /* WaterTrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9418FB2CCA776500442D77 /* WaterTrackerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +25,10 @@
 		FC9418E82CC51F5400442D77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC9418EB2CC51F5400442D77 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FC9418F22CC5453600442D77 /* onboradingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboradingScreen.swift; sourceTree = "<group>"; };
+		FC9418F42CC7CC1900442D77 /* NotificationPreferencesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPreferencesScreen.swift; sourceTree = "<group>"; };
+		FC9418F62CC934F600442D77 /* IntakeProgressScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntakeProgressScreen.swift; sourceTree = "<group>"; };
+		FC9418F92CCA6EE800442D77 /* WaterTrackerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterTrackerModel.swift; sourceTree = "<group>"; };
+		FC9418FB2CCA776500442D77 /* WaterTrackerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterTrackerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +45,8 @@
 		FC9418D82CC51F4F00442D77 = {
 			isa = PBXGroup;
 			children = (
+				FC9418FB2CCA776500442D77 /* WaterTrackerViewModel.swift */,
+				FC9418F92CCA6EE800442D77 /* WaterTrackerModel.swift */,
 				FC9418E32CC51F4F00442D77 /* waterTrackingApp */,
 				FC9418E22CC51F4F00442D77 /* Products */,
 			);
@@ -55,6 +65,8 @@
 			children = (
 				FC9418E42CC51F4F00442D77 /* waterTrackingAppApp.swift */,
 				FC9418F22CC5453600442D77 /* onboradingScreen.swift */,
+				FC9418F42CC7CC1900442D77 /* NotificationPreferencesScreen.swift */,
+				FC9418F62CC934F600442D77 /* IntakeProgressScreen.swift */,
 				FC9418E62CC51F4F00442D77 /* ContentView.swift */,
 				FC9418E82CC51F5400442D77 /* Assets.xcassets */,
 				FC9418EA2CC51F5400442D77 /* Preview Content */,
@@ -140,9 +152,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC9418FC2CCA776500442D77 /* WaterTrackerViewModel.swift in Sources */,
+				FC9418FA2CCA6EE800442D77 /* WaterTrackerModel.swift in Sources */,
 				FC9418F32CC5453700442D77 /* onboradingScreen.swift in Sources */,
 				FC9418E72CC51F4F00442D77 /* ContentView.swift in Sources */,
+				FC9418F72CC934F600442D77 /* IntakeProgressScreen.swift in Sources */,
 				FC9418E52CC51F4F00442D77 /* waterTrackingAppApp.swift in Sources */,
+				FC9418F52CC7CC1900442D77 /* NotificationPreferencesScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
