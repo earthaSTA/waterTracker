@@ -7,71 +7,44 @@
 
 import SwiftUI
 
-//
-//struct NotificationTime {
-//    let notificationPref: String
-//}
-//let timeInterval = [NotificationTime(notificationPref: "15"), NotificationTime(notificationPref: "30"), NotificationTime(notificationPref: "60"), NotificationTime(notificationPref: "90")]
-
-
-
-
 
 struct NotificationPreferencesScreen: View {
+
+    //selected starttime = date()
     
-    let MinsInterval = [15, 30, 60, 90]
-    let HoursInterval = [2, 3, 4, 5]
+    @StateObject private var viewModel = NotificationPreferencesViewModel()
+    
+//    @ObservedObject var intravalViewModel: NotificationPreferencesViewModel
+    @State private var selectedInterval: NotificationPrefMin?
+    
     
     @State var Time = Date.now
+    
+    @State var clicked: Bool = false
     
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            Text("Notification Preferences")
-                .font(.title2)
-                .fontWeight(.bold)
+        
             
-                .padding()
-            
-            Text("The Start and End hour")
-                .font(.body)
-                .fontWeight(.bold)
-            
-            Text("Specify the start and end date to receive the notifications")
-                .font(.callout)
-                .foregroundStyle(Color(UIColor.systemGray2))
-               
-            
-            //start and end space
-//            VStack {
-//                ZStack {
-//                    Rectangle()
-//                        .frame(width: 355, height: 44)
-//                        .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
-//                    HStack {
-//                        Text("Start hour")
-//                            .font(.body)
-//                            .fontWeight(.regular)
-//                        
-//                    }
-//                    .padding(.trailing, 240)
-//                }
-//
-//                ZStack {
-//                    Rectangle()
-//                        .frame(width: 355, height: 44)
-//                        .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
-//                    HStack {
-//                        Text("End hour")
-//                            .font(.body)
-//                            .fontWeight(.regular)
-//                        
-//                    }
-//                    .padding(.trailing, 240)
-//                }
-//            }
+            VStack(alignment: .leading) {
+                Text("Notification Preferences")
+                    .font(.title2)
+                    .fontWeight(.bold)
                 
+                    .padding(.trailing)
+                    .padding(.bottom)
+                
+                
+                Text("The Start and End hour")
+                    .font(.body)
+                    .fontWeight(.bold)
+                
+                Text("Specify the start and end date to receive the notifications")
+                    .font(.callout)
+                    .foregroundStyle(Color(UIColor.systemGray2))
+            }
+            .padding(.trailing)
             VStack {
                 ZStack {
                     Rectangle()
@@ -80,24 +53,26 @@ struct NotificationPreferencesScreen: View {
                     VStack {
                         HStack(){
                             DatePicker("Start hour", selection: $Time, displayedComponents: .hourAndMinute)
-                                .font(.body)
-                                .padding(.leading, 20)
-                                .padding(.trailing, 15)
                             
-                          
-                                
+                                .font(.body)
+                                .padding(.leading, 30)
+                                .padding(.trailing, 30)
+                            
+                            
+                            
+                            
                         }
                         Divider()
                             .frame(width: 323, height: 1)
                         HStack() {
                             DatePicker("End hour", selection: $Time, displayedComponents: .hourAndMinute)
                                 .font(.body)
-                                .padding(.leading, 20)
-                                .padding(.trailing, 15)
-                              
-                                
+                                .padding(.leading, 30)
+                                .padding(.trailing, 30)
+                            
+                            
                         }
-                       
+                        
                     }
                 }
             }
@@ -109,36 +84,40 @@ struct NotificationPreferencesScreen: View {
             
             .padding(.bottom, 30)
             
+            VStack(alignment: .leading) {
+                Text("Notification interval")
+                    .font(.body)
+                    .fontWeight(.bold)
+                
+                Text("How often would you like to receive notifications within the specified time interval")
+                    .font(.callout)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(Color(UIColor.systemGray2))
+            }
             
-            Text("Notification interval")
-                .font(.body)
-                .fontWeight(.bold)
-            
-            Text("How often would you like to receive notifications within the specified time interval")
-                .font(.callout)
-                .fontWeight(.semibold)
-                .foregroundStyle(Color(UIColor.systemGray2))
             VStack {
                 HStack {
-                    ForEach(MinsInterval, id: \.self){ mins in
+                    ForEach(NotificationPrefMin.allCases, id: \.self){ inteval in
                         
                         Button (action: {
+                            viewModel.selectedInterval = inteval
                             
+                            clicked.toggle() // bool var change when button is clicked
                         }){
                             ZStack {
                                 Rectangle()
                                     .frame(width: 77, height: 70)
-                                    .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
+                                    .foregroundColor(clicked ? .cyan : .f2F2F7)
                                     .cornerRadius(6)
                                 VStack {
-                                    Text("\(mins)")
+                                    Text("\(inteval)")
                                         .font(.body)
                                         .fontWeight(.regular)
-                                        .foregroundColor(.cyan)
+                                        .foregroundColor(clicked ? .white : .cyan)
                                     Text("Mins")
                                         .font(.body)
                                         .fontWeight(.regular)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(clicked ? .white : .black)
                                 }
                                 
                             }
@@ -147,25 +126,27 @@ struct NotificationPreferencesScreen: View {
                     }
                 }
                 HStack {
-                    ForEach(HoursInterval, id: \.self){ mins in
+                    ForEach(notificationPrefHour.allCases, id: \.self){ interval in
                         
                         Button (action: {
                             
+                            viewModel.selectedInterval2 = interval
+                            clicked.toggle()
                         }){
                             ZStack {
                                 Rectangle()
                                     .frame(width: 77, height: 70)
-                                    .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
+                                    .foregroundColor(clicked ? .cyan : .f2F2F7)
                                     .cornerRadius(6)
                                 VStack {
-                                    Text("\(mins)")
+                                    Text("\(interval)")
                                         .font(.body)
                                         .fontWeight(.regular)
-                                        .foregroundColor(.cyan)
+                                        .foregroundColor(clicked ? .white : .cyan)
                                     Text("Hours")
                                         .font(.body)
                                         .fontWeight(.regular)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(clicked ? .white : .black)
                                 }
                                 
                             }
@@ -183,191 +164,31 @@ struct NotificationPreferencesScreen: View {
             }
             .padding()
             
-            //
-            //
-            //                ForEach(timeInterval,id: \.notificationPref) { interval in
-            //                    Text(interval.notificationPref)
-            //                    Rectangle()
-            //                        .frame(width: 77, height: 70)
-            
-            //
-            //            VStack(spacing: -2){
-            //                HStack(){
-            //                    ZStack {
-            //
-            //                        Rectangle()
-            //                            .frame(width: 77, height: 70)
-            //                            .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
-            //                            .cornerRadius(6)
-            //                        VStack{
-            //                            Text("15")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                                .foregroundColor(.cyan)
-            //                            Text("Mins")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                        }
-            //                    }
-            //
-            //
-            //
-            //                    ZStack {
-            //                        Rectangle()
-            //                            .frame(width: 77, height: 70)
-            //                            .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
-            //                            .cornerRadius(6)
-            //                        VStack{
-            //                            Text("30")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                                .foregroundColor(.cyan)
-            //                            Text("Mins")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                        }
-            //
-            //                    }
-            //
-            //
-            //
-            //                    ZStack {
-            //                        Rectangle()
-            //                            .frame(width: 77, height: 70)
-            //                            .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
-            //                            .cornerRadius(6)
-            //                        VStack{
-            //                            Text("60")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                                .foregroundColor(.cyan)
-            //                            Text("Mins")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                        }
-            //
-            //                    }
-            //
-            //
-            //                    ZStack {
-            //                        Rectangle()
-            //                            .frame(width: 77, height: 70)
-            //                            .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
-            //                            .cornerRadius(6)
-            //                        VStack{
-            //                            Text("90")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                                .foregroundColor(.cyan)
-            //                            Text("Mins")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                        }
-            //
-            //                    }
-            //
-            //
-            //                }
-            //                HStack {
-            //                    ZStack {
-            //                        Rectangle()
-            //                            .frame(width: 77, height: 70)
-            //                            .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
-            //                            .cornerRadius(6)
-            //                        VStack{
-            //                            Text("2")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                                .foregroundColor(.cyan)
-            //                            Text("Hours")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                        }
-            //
-            //
-            //
-            //                    }
-            //                    ZStack {
-            //                        Rectangle()
-            //                            .frame(width: 77, height: 70)
-            //                            .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
-            //                            .cornerRadius(6)
-            //                        VStack{
-            //                            Text("3")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                                .foregroundColor(.cyan)
-            //                            Text("Hours")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                        }
-            //
-            //                    }
-            //
-            //
-            //                    ZStack {
-            //                        Rectangle()
-            //                            .frame(width: 77, height: 70)
-            //                            .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
-            //                            .cornerRadius(6)
-            //                        VStack{
-            //                            Text("4")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                                .foregroundColor(.cyan)
-            //                            Text("Hours")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                        }
-            //
-            //                    }
-            //
-            //                    ZStack {
-            //                        Rectangle()
-            //                            .frame(width: 77, height: 70)
-            //                            .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
-            //                            .cornerRadius(6)
-            //                        VStack{
-            //                            Text("5")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                                .foregroundColor(.cyan)
-            //                            Text("Hours")
-            //                                .font(.body)
-            //                                .fontWeight(.regular)
-            //                        }
-            //
-            //                    }
-            //
-            //                }
-            //                .padding()
-            //
-            //            }
-            //
-            //            }
-            //
-                    .padding(.bottom, 120)
-                        Button(action: {
-            
-                        }) {
-            
-                            ZStack {
-            
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.cyan)
-                                    .frame(width: 355, height: 50)
-                                Text("Start")
-                                    .font(.body)
-                                    .fontWeight(.regular)
-                                    .foregroundColor(.white)
-                            }
-            
-                        }
+            .padding(.bottom, 120)
+            Button(action: {
+                
+            }) {
+                
+                ZStack {
+                    
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.cyan)
+                        .frame(width: 355, height: 50)
+                    Text("Start")
+                        .font(.body)
+                        .fontWeight(.regular)
+                        .foregroundColor(.white)
+                }
+                .padding()
+                
+            }
+        
+        }
             
         }
-                                 }
-    }
-//}
+                                 
+    
+
 
 #Preview {
     NotificationPreferencesScreen()
