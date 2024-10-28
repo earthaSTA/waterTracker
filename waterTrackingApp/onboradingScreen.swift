@@ -73,6 +73,7 @@ struct OnboardingScreen: View {
             }
             .padding()
         }
+        .navigationBarBackButtonHidden()
     }
 }
 

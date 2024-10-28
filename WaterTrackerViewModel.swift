@@ -49,10 +49,7 @@ class WaterTrackerViewModel: ObservableObject {
 }
 
 class NotificationPreferencesViewModel: ObservableObject {
-//    @Published var selectedInterval: NotificationPrefMin? = nil
-    @Published var selectedInterval2: notificationPrefHour? = nil
-
-    
+    @Published var choosenInterval: Int? = nil
 }
 
 
@@ -64,22 +61,28 @@ enum NotifiactionPreMin: Int, CaseIterable {
     }
 }
     
-
-enum notificationPrefHour: CaseIterable {
-    case twoHour, threeHour, fourHour, fiveHour
+enum NotificationPrefhour: Int, CaseIterable {
+    case two = 2, three = 3, four = 4, five = 5
     
-    var durationNotificationHour: String {
-        switch self {
-            
-        case .twoHour: return "2"
-            case .threeHour: return "3"
-            case .fourHour: return "4"
-            case .fiveHour: return "5"
-            
-        }
+    var showHour: String {
+        "\(self.rawValue)"
     }
 }
-    
+//enum notificationPrefHour: CaseIterable {
+//    case twoHour, threeHour, fourHour, fiveHour
+//    
+//    var durationNotificationHour: String {
+//        switch self {
+//            
+//        case .twoHour: return "2"
+//            case .threeHour: return "3"
+//            case .fourHour: return "4"
+//            case .fiveHour: return "5"
+//            
+//        }
+//    }
+//}
+//    
     
     
     
