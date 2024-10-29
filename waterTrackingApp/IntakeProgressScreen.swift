@@ -7,18 +7,12 @@
 
 import SwiftUI
 
-// WaterTrackerViewModel.litersDrinked
-// WaterTrackerViewModel.neededLiters
-
 struct IntakeProgressScreen: View {
   
-  @ObservedObject var viewModel = WaterTrackerViewModel()
+    @ObservedObject var viewModel = WaterTrackerViewModel()
     
     var body: some View {
-       
-       
-        
-        
+
         HStack {
             VStack(alignment: .leading) {
                 Text("Today's Water Intake")
@@ -38,12 +32,6 @@ struct IntakeProgressScreen: View {
                 .font(.title2)
                                    .fontWeight(.bold)
                 
-                
-                
-//                Text("\(String(format: "%.1f", viewModel.litersDrinked)) / \(String(format: "%.1f", viewModel.neededLiters))")
-//                    .font(.title2)
-//                    .fontWeight(.bold)
-//                
             }
             .padding()
             Spacer()

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import UserNotifications
 
 struct NotificationPreferencesScreen: View {
     
@@ -24,7 +24,10 @@ struct NotificationPreferencesScreen: View {
     
     @State private var IsMinsSelected = false // if this var is not here, the user can tap on mins and hours at the same time
     
-    @State var Time = Date.now
+    
+    @State var startTime: Date = Date()
+    @State var endTime: Date = Date()
+
     
     @State var clicked: Bool = false // mean onTapGesture is not tapped yet
     
@@ -40,12 +43,13 @@ struct NotificationPreferencesScreen: View {
                         .fontWeight(.bold)
                     
                         .padding(.trailing)
-                        .padding(.bottom)
-                    
+                        .padding(.bottom, 30)
+                        
                     
                     Text("The Start and End hour")
                         .font(.body)
                         .fontWeight(.bold)
+                        .padding(.bottom, 1)
                     
                     Text("Specify the start and end date to receive the notifications")
                         .font(.callout)
@@ -59,11 +63,11 @@ struct NotificationPreferencesScreen: View {
                             .foregroundColor(Color(red: 0.949, green: 0.949, blue: 0.971))
                         VStack {
                             HStack(){
-                                DatePicker("Start hour", selection: $Time, displayedComponents: .hourAndMinute)
+                                DatePicker("Start hour", selection: $startTime, displayedComponents: .hourAndMinute)
                                     .font(.body)
-                                    .padding(.leading, 30)
+                                    .padding(.leading, 35)
                                     .padding(.trailing, 30)
-                                
+                                    .padding(.top)
                                 
                                 
                                 
@@ -71,10 +75,11 @@ struct NotificationPreferencesScreen: View {
                             Divider()
                                 .frame(width: 323, height: 1)
                             HStack() {
-                                DatePicker("End hour", selection: $Time, displayedComponents: .hourAndMinute)
+                                DatePicker("End hour", selection: $endTime, displayedComponents: .hourAndMinute)
                                     .font(.body)
-                                    .padding(.leading, 30)
+                                    .padding(.leading, 35)
                                     .padding(.trailing, 30)
+                                    .padding(.bottom)
                                 
                                 
                             }
@@ -88,17 +93,20 @@ struct NotificationPreferencesScreen: View {
                 
                 
                 
-                .padding(.bottom, 30)
+                .padding(.bottom, 15)
                 
                 VStack(alignment: .leading) {
                     Text("Notification interval")
                         .font(.body)
                         .fontWeight(.bold)
-                    
+                        .padding(.bottom, 1)
+
                     Text("How often would you like to receive notifications within the specified time interval")
                         .font(.callout)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color(UIColor.systemGray2))
+                        .padding(.bottom, 10)
+
                 }
                 VStack {
                     // both hour and min are in here
@@ -125,7 +133,7 @@ struct NotificationPreferencesScreen: View {
                                             choseenIntervalInstance.chossenInterval = interval.rawValue // hold the tapped interval in choseenIntervalInstance
                                             IsMinsSelected = true // Mark minutes as selected
                                             
-                                            choseenIntervalInstance.ScheduleNotification(IntervalChoice: TimeInterval(interval.rawValue)) //to pass parameters into the function 
+                                            choseenIntervalInstance.ScheduleNotification(IntervalChoice: TimeInterval(interval.rawValue)) //to pass parameters into the function
                                         }
                                     Text("Mins")
                                         .font(.body)
@@ -155,11 +163,10 @@ struct NotificationPreferencesScreen: View {
                                             
                                             cLickedStateHour[interval1] = true
                                             self.selectedIntervalHour = interval1
-//                                            $viewModel.NotificationPreferencesViewModel = interval1.rawValue
                                             IsMinsSelected = false // Mark hours as selected
                                             
                                             choseenIntervalInstance.ScheduleNotification(IntervalChoice: TimeInterval(interval1.rawValue))
-
+                                            
                                         }
                                     Text("Hours")
                                         .font(.body)
@@ -175,79 +182,6 @@ struct NotificationPreferencesScreen: View {
             
         }
         
-        //            VStack {
-        //                HStack {
-        //                    ForEach(NotificationPrefMin.allCases, id: \.self){ inteval in
-        //
-        //                        Button (action: {
-        //                            viewModel.selectedInterval = inteval
-        //
-        //                            clicked.toggle() // bool var change when button is clicked
-        //                        }){
-        //                            ZStack {
-        //                                Rectangle()
-        //                                    .frame(width: 77, height: 70)
-        //                                    .foregroundColor(clicked ? .cyan : .f2F2F7)
-        //                                    .cornerRadius(6)
-        //                                VStack {
-        //                                    Text("\(inteval)")
-        //                                        .font(.body)
-        //                                        .fontWeight(.regular)
-        //                                        .foregroundColor(clicked ? .white : .cyan)
-        //                                    Text("Mins")
-        //                                        .font(.body)
-        //                                        .fontWeight(.regular)
-        //                                        .foregroundColor(clicked ? .white : .black)
-        //                                }
-        //
-        //                            }
-        //                        }
-        //
-        //                    }
-        //                }
-        //                HStack {
-        //                    ForEach(notificationPrefHour.allCases, id: \.self){ interval in
-        //
-        //                        Button (action: {
-        //
-        //                            viewModel.selectedInterval2 = interval
-        //                            clicked.toggle()
-        //                        }){
-        //                            ZStack {
-        //                                Rectangle()
-        //                                    .frame(width: 77, height: 70)
-        //                                    .foregroundColor(clicked ? .cyan : .f2F2F7)
-        //                                    .cornerRadius(6)
-        //                                VStack {
-        //                                    Text("\(interval)")
-        //                                        .font(.body)
-        //                                        .fontWeight(.regular)
-        //                                        .foregroundColor(clicked ? .white : .cyan)
-        //                                    Text("Hours")
-        //                                        .font(.body)
-        //                                        .fontWeight(.regular)
-        //                                        .foregroundColor(clicked ? .white : .black)
-        //                                }
-        //
-        //                            }
-        //                        }
-        //
-        //                    }
-        //                }
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //            }
-        //            .padding()
-        //
-        //            .padding(.bottom, 120)
-        //            Button(action: {
-        //
-        //            }) {
         NavigationLink(destination: IntakeProgressScreen()){
             
             ZStack {
@@ -262,11 +196,19 @@ struct NotificationPreferencesScreen: View {
             }
             
         }
-        .navigationBarBackButtonHidden()
-
+        
+        //        .navigationBarBackButtonHidden()
+        .onAppear() {
+            NotificationManger.notifiInstance.requestNotification()
+            
+            if let selectedInterval = choseenIntervalInstance.chossenInterval {
+                NotificationManger.notifiInstance.ScheduleNotification(IntervalChoice: TimeInterval(selectedInterval))
+            }
+            
+            
+        }
     }
 }
-        
                                  
     
 

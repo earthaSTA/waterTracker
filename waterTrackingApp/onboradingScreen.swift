@@ -2,6 +2,7 @@ import SwiftUI
 
 struct OnboardingScreen: View {
     
+    @StateObject private var viewModel = WaterTrackerViewModel()
     @State public var weight: String = ""
     var body: some View {
         NavigationView {
@@ -37,12 +38,23 @@ struct OnboardingScreen: View {
                     
                     ZStack {
                         TextField("Body weight", text: $weight)
+                            .keyboardType(.decimalPad) // allow numbers on keyboard
                             .padding()
                             .background(Color(UIColor.systemGray6))
                             .foregroundColor(.black)
                             .cornerRadius(3)
                             .accentColor(.cyan)
                             .padding()
+                            .onChange( of: weight ) { newValue in
+                                if let value = Double(newValue) {
+                                    viewModel.weight = value
+                                viewModel.calcNeededLiters()
+                                }
+                                else {
+                                    viewModel.weight = 0.0
+                                }
+                            }
+                        
                         
                         Image(systemName: "x.circle.fill")
                             .foregroundColor(.gray)
@@ -54,9 +66,7 @@ struct OnboardingScreen: View {
                 Spacer() // Pushes everything above this to the top
                 
                 
-                //                Button(action: {
                 NavigationLink(destination: NotificationPreferencesScreen()) {
-                    //                }) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.cyan)
@@ -73,7 +83,6 @@ struct OnboardingScreen: View {
             }
             .padding()
         }
-        .navigationBarBackButtonHidden()
     }
 }
 

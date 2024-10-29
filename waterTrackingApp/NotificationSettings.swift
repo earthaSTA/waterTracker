@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
-// عطي الفنكنشن باراميتر وناديها هناك وجوا الباراميتر نادي الفاريبل اللي يخزن 
+import UserNotifications
+
 
 class NotificationManger: ObservableObject {
     @Published var chossenInterval: Int?
+    @Published var chossenHourInterval: Int?
     
     static let notifiInstance = NotificationManger()
 
@@ -26,6 +28,7 @@ class NotificationManger: ObservableObject {
         }
     }
     
+    
     func ScheduleNotification(IntervalChoice interval: TimeInterval ) {
         // Notification look and sound
         let content = UNMutableNotificationContent()
@@ -33,27 +36,10 @@ class NotificationManger: ObservableObject {
         content.sound = .default
         content.badge = 1
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false) // how often does the notification pop and how many it repeat
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval * 60, repeats: true) // how often does the notification pop and how many it repeat
         
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
     }
     
-}
-
-struct NotificationSettings: View {
-    var body: some View {
-        VStack {
-            Button("Request permission") {
-                NotificationManger.notifiInstance.requestNotification()
-            }
-//            Button("S"){
-//                NotificationManger.notifiInstance.ScheduleNotification()
-//            }
-        }
-    }
-}
-
-#Preview {
-    NotificationSettings()
 }

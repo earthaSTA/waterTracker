@@ -7,20 +7,24 @@
 
 import SwiftUI
 
-
 class WaterTrackerViewModel: ObservableObject {
     
     @Published var litersDrinked: Double = 0.0
     @Published var DoubleneededLiters: Double? = nil
     @Published var neededLiters: Double = 2.7
     @Published var maxLiters: Double = 0.0
-    @Published var weight: Double = 0.0
+    
+    @Published var weight: Double = 0.0 {
+        didSet {
+                   calcNeededLiters() // Recalculate needed liters whenever weight changes
+               }
+    }
     
     
     
     func calcNeededLiters() {
         
-        neededLiters = weight*0.03
+        neededLiters = weight * 0.03
     }
     
     
@@ -68,23 +72,6 @@ enum NotificationPrefhour: Int, CaseIterable {
         "\(self.rawValue)"
     }
 }
-//enum notificationPrefHour: CaseIterable {
-//    case twoHour, threeHour, fourHour, fiveHour
-//    
-//    var durationNotificationHour: String {
-//        switch self {
-//            
-//        case .twoHour: return "2"
-//            case .threeHour: return "3"
-//            case .fourHour: return "4"
-//            case .fiveHour: return "5"
-//            
-//        }
-//    }
-//}
-//    
-    
-    
     
     
 
