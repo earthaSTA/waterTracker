@@ -1,4 +1,4 @@
-# Hydrate
+# Hydrate 💧
 
 
 ## Overview
@@ -8,6 +8,19 @@ Hydrate is a Water Tracker App to help users monitor their daily water intake, a
 - Daily intake staticstics
 - Reminder Notifications
 - Data visualization
+- Personalized Recommendition
+- Easy to use
+
+## Planned Updates
+- Sync with smart watch
+- Update water intake based on activity
+- Rewarding the user with achievements
+
+## Tech Stack 
+- SwiftUI
+- MVVM 
+
+## Views
 
   <p align = "center">
 <img src = "https://github.com/user-attachments/assets/cac2befb-b746-4e5b-809e-5b20d1c2ebe0" width ="200"/>
